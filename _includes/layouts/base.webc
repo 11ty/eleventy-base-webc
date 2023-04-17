@@ -1,0 +1,31 @@
+<!doctype html>
+<html :lang="metadata.language">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title @text="title || metadata.title"></title>
+		<meta name="description" :content="description || metadata.description">
+
+		<!--- Uncomment this if you’d like folks to know that you used Eleventy to build your site! --->
+		<!--- <meta name="generator" :content="eleventy.generator"> --->
+
+		<!--- This gets bundled into the critical styles --->
+		<link rel="stylesheet" href="css/base.css">
+
+		<style webc:keep @raw="getBundle('css')"></style>
+	</head>
+	<body>
+		<header>
+			<a href="/" @text="metadata.title"></a>
+		</header>
+
+		<main id="skip" @raw="content"></main>
+
+		<footer>
+			©<span webc:nokeep @text="(new Date()).getFullYear()"></span>
+			Built with <a href="https://www.11ty.dev/">Eleventy</a>
+		</footer>
+
+		<script type="module" webc:keep @raw="getBundle('js')"></script>
+	</body>
+</html>
