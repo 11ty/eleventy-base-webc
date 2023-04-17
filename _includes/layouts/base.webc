@@ -5,9 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title @text="title || metadata.title"></title>
 		<meta name="description" :content="description || metadata.description">
-
-		<!--- Uncomment this if you’d like folks to know that you used Eleventy to build your site! --->
-		<!--- <meta name="generator" :content="eleventy.generator"> --->
+		<meta name="generator" :content="eleventy.generator">
 
 		<!--- This gets bundled into the critical styles --->
 		<link rel="stylesheet" href="css/base.css">
