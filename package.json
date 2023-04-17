@@ -1,7 +1,7 @@
 {
 	"name": "@11ty/eleventy-base-webc",
 	"version": "1.0.0",
-	"description": "A modern minimalistic starter project using Eleventy and WebC.",
+	"description": "A minimalist bare-bones starter project using Eleventy and WebC.",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"start": "npx @11ty/eleventy --serve --quiet --incremental",

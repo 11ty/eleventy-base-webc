@@ -3,7 +3,7 @@ const pluginWebc = require("@11ty/eleventy-plugin-webc");
 const pluginJavaScriptFrontMatter = require("./_config/javascriptFrontMatter.cjs");
 
 module.exports = function(eleventyConfig) {
-	eleventyConfig.addPlugin(pluginJavaScriptFrontMatter);
+	eleventyConfig.ignores.add("README.md");
 
 	eleventyConfig.addPlugin(pluginWebc, {
 		components: [
@@ -12,7 +12,19 @@ module.exports = function(eleventyConfig) {
 		]
 	});
 
+	// Use arbitrary JavaScript in front matter.
+	eleventyConfig.addPlugin(pluginJavaScriptFrontMatter);
+
 	eleventyConfig.setServerOptions({
 		domDiff: false
 	});
+
+	return {
+		dir: {
+			input: "content",          // default: "."
+			includes: "../_includes",  // default: "_includes"
+			data: "../_data",          // default: "_data"
+			output: "_site"
+		},
+	}
 };
