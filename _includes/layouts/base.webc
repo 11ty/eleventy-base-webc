@@ -17,7 +17,7 @@
 			<a href="/" @text="metadata.title"></a>
 		</header>
 
-		<main id="skip" @raw="content"></main>
+		<main @raw="content"></main>
 
 		<footer>
 			©<span webc:nokeep @text="(new Date()).getFullYear()"></span>
