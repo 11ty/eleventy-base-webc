@@ -4,8 +4,17 @@ A starter repository showing how to build a web site with the [Eleventy](https:/
 
 ## Get Started
 
-1. Make a copy of this code, using one of these options:
-	* Run one of these commands on the command line:
-		* `npx degit 11ty/eleventy-base-webc`
-		* `git clone https://github.com/11ty/eleventy-base-webc.git .`
-	* Use the "Use this template" button on GitHub.
+1. Make a copy of this code:
+
+You can run **one** of these on the command line (both install into the current folder):
+
+* `npx degit 11ty/eleventy-base-webc`
+* `git clone https://github.com/11ty/eleventy-base-webc.git .`
+
+Or you can use the [_"Use this template"_ button on GitHub](https://github.com/11ty/eleventy-base-webc).
+
+2. Install the dependencies
+
+```
+npm install
+```
