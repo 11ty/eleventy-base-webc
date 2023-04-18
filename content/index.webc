@@ -2,5 +2,7 @@
 // <script>
 // Initialize page data in JavaScript front matter
 let place = "world";
+
+// </script>
 ---
 <p>Hello <span @text="place"></span>.</p>
