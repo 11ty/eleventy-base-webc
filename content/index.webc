@@ -7,3 +7,10 @@ let place = "earth";
 ---
 <hello-component place="world"></hello-component>
 <hello-component :place="place"></hello-component>
+
+<!--- is-land: https://www.11ty.dev/docs/plugins/partial-hydration/ --->
+<!---
+	<is-land on:visible>
+		This is an island.
+	</is-land>
+--->
