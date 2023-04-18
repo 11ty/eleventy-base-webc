@@ -22,6 +22,7 @@
 		<footer>
 			©<span webc:nokeep @text="(new Date()).getFullYear()"></span>
 			Built with <a href="https://www.11ty.dev/">Eleventy</a>.
+			<a href="https://github.com/11ty/eleventy-base-webc">Source code on GitHub</a>.
 		</footer>
 
 		<script type="module" webc:keep @raw="getBundle('js')"></script>
