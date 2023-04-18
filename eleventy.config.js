@@ -1,6 +1,6 @@
 const pluginWebc = require("@11ty/eleventy-plugin-webc");
 
-const pluginJavaScriptFrontMatter = require("./_config/javascriptFrontMatter.cjs");
+const pluginJavaScriptFrontMatter = require("./_config/javascriptFrontMatter");
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
@@ -18,4 +18,12 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
 		domDiff: false
 	});
+
+	return {
+		dir: {
+			input: "content",          // default: "."
+			includes: "../_includes",  // default: "_includes"
+			data: "../_data",          // default: "_data"
+		},
+	}
 };

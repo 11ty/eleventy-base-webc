@@ -14,14 +14,14 @@
 	</head>
 	<body>
 		<header>
-			<a href="/" @text="metadata.title"></a>
+			<a href="/"><strong @text="metadata.title"></strong></a>
 		</header>
 
 		<main @raw="content"></main>
 
 		<footer>
 			©<span webc:nokeep @text="(new Date()).getFullYear()"></span>
-			Built with <a href="https://www.11ty.dev/">Eleventy</a>
+			Built with <a href="https://www.11ty.dev/">Eleventy</a>.
 		</footer>
 
 		<script type="module" webc:keep @raw="getBundle('js')"></script>

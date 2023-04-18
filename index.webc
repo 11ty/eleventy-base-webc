@@ -1,4 +1,0 @@
----javascript
-let layout = "layouts/base.webc";
----
-<p>Content.</p>

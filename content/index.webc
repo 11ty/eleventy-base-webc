@@ -1,0 +1,6 @@
+---javascript
+// <script>
+// Initialize page data in JavaScript front matter
+let place = "world";
+---
+<p>Hello <span @text="place"></span>.</p>

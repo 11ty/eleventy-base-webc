@@ -28,5 +28,9 @@ main,
 footer {
 	padding: .5rem;
 	margin: 0 auto;
-	max-width: 60em;
+	max-width: 60rem;
+}
+footer {
+	font-style: italic;
+	font-size: 0.9375em; /* 15px /16 */
 }
