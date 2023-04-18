@@ -8,7 +8,7 @@ A minimalist bare-bones Eleventy-official starter project useful for demos/exper
 	* Includes the [`<is-land>` WebC component](https://www.11ty.dev/docs/plugins/partial-hydration/) ready for use.
 	* Add your own `*.webc` files to the `_components` folder.
 * Adds a [`javascript` front matter type](https://www.11ty.dev/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter) for arbitrary JS front matter.
-* Simple WebC Eleventy Layout file with streamlined critical CSS and JS bundles (`_includes/layouts/base.webc`)
+* Simple WebC Eleventy Layout file with streamlined critical CSS and JS bundles (see `_includes/layouts/base.webc`)
 
 ## Get Started
 
@@ -21,6 +21,7 @@ A minimalist bare-bones Eleventy-official starter project useful for demos/exper
 2. Install the dependencies by running `npm install`
 3. Run it with `npm start` (see the other commands in `package.json` or on the [CLI docs](https://www.11ty.dev/docs/usage/))
 4. Navigate to `http://localhost:8080` in your web browser.
+5. Edit `content/index.webc` to change content on the home page.
 
 ## Demo
 
