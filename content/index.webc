@@ -1,8 +1,9 @@
 ---javascript
 // <script>
 // Initialize page data in JavaScript front matter
-let place = "world";
+let place = "earth";
 
 // </script>
 ---
-<p>Hello <span @text="place"></span>.</p>
+<hello-component place="world"></hello-component>
+<hello-component :place="place"></hello-component>
