@@ -2,6 +2,14 @@
 
 A starter repository showing how to build a web site with the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 release](https://www.11ty.dev/blog/eleventy-v2/)) and [WebC](https://www.11ty.dev/docs/languages/webc/).
 
+## Features
+
+* Eleventy WebC plugin preconfigured:
+	* Includes the [`<is-land>` WebC component](https://www.11ty.dev/docs/plugins/partial-hydration/) ready for use.
+	* Add your own `*.webc` files to the `_components` folder.
+* Adds a [`javascript` front matter type](https://www.11ty.dev/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter) for arbitrary JS front matter.
+* Simple WebC Eleventy Layout file with streamlined critical CSS and JS bundles (`_includes/layouts/base.webc`)
+
 ## Get Started
 
 1. Make a copy of this code with **one** of these on the command line (both install into the current folder):
