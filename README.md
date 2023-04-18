@@ -1,10 +1,10 @@
 # eleventy-base-webc
 
-A starter repository showing how to build a web site with the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 release](https://www.11ty.dev/blog/eleventy-v2/)) and [WebC](https://www.11ty.dev/docs/languages/webc/).
+A minimalist bare-bones starter project useful for demos/experiments with the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 release](https://www.11ty.dev/blog/eleventy-v2/)) and [WebC](https://www.11ty.dev/docs/languages/webc/).
 
 ## Features
 
-* Eleventy WebC plugin preconfigured:
+* [Eleventy WebC plugin](https://www.11ty.dev/docs/languages/webc/) preconfigured:
 	* Includes the [`<is-land>` WebC component](https://www.11ty.dev/docs/plugins/partial-hydration/) ready for use.
 	* Add your own `*.webc` files to the `_components` folder.
 * Adds a [`javascript` front matter type](https://www.11ty.dev/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter) for arbitrary JS front matter.
@@ -23,6 +23,9 @@ A starter repository showing how to build a web site with the [Eleventy](https:/
 ```
 npm install
 ```
+
+3. Run it with `npm start` (see the other commands in `package.json` or on the [CLI docs](https://www.11ty.dev/docs/usage/))
+4. Navigate to `http://localhost:8080` in your web browser.
 
 ## Demo
 
