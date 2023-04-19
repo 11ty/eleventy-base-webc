@@ -13,11 +13,9 @@ A minimalist bare-bones Eleventy-official starter project useful for demos/exper
 ## Get Started
 
 1. Make a copy of this code with **one** of these on the command line (both install into the current folder):
-
-* `git clone https://github.com/11ty/eleventy-base-webc.git .`
-* `npx degit 11ty/eleventy-base-webc`
-* …or you can use the [_"Use this template"_ button on GitHub](https://github.com/11ty/eleventy-base-webc).
-
+	* `git clone https://github.com/11ty/eleventy-base-webc.git .`
+	* `npx degit 11ty/eleventy-base-webc`
+	* …or you can use the [_"Use this template"_ button on GitHub](https://github.com/11ty/eleventy-base-webc).
 2. Install the dependencies by running `npm install`
 3. Run it with `npm start` (see the other commands in `package.json` or on the [CLI docs](https://www.11ty.dev/docs/usage/))
 4. Navigate to `http://localhost:8080` in your web browser.
