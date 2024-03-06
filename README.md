@@ -1,13 +1,13 @@
 # eleventy-base-webc
 
-A minimalist bare-bones Eleventy-official starter project useful for demos/experiments with [WebC](https://www.11ty.dev/docs/languages/webc/) and the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 release](https://www.11ty.dev/blog/eleventy-v2/)).
+A minimalist bare-bones Eleventy-official starter project useful for demos/experiments with [WebC](https://www.11ty.dev/docs/languages/webc/) and the [Eleventy](https://www.11ty.dev/) site generator (using the [v3.0 release](https://www.11ty.dev/blog/canary-eleventy-v3/)).
 
 ## Features
 
 * [Eleventy WebC plugin](https://www.11ty.dev/docs/languages/webc/) preconfigured:
 	* Includes the [`<is-land>` WebC component](https://www.11ty.dev/docs/plugins/partial-hydration/) ready for use.
 	* Add your own `*.webc` files to the `_components` folder.
-* Adds a [`javascript` front matter type](https://www.11ty.dev/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter) for arbitrary JS front matter.
+* Using the new `node` front matter type for arbitrary JavaScript front matter (via [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/))
 * Simple WebC Eleventy Layout file with streamlined critical CSS and JS bundles (see `_includes/layouts/base.webc`)
 
 ## Get Started
