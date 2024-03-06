@@ -1,9 +1,8 @@
-const pluginWebc = require("@11ty/eleventy-plugin-webc");
-
-const pluginJavaScriptFrontMatter = require("./_config/javascriptFrontMatter");
+import pluginWebc from "@11ty/eleventy-plugin-webc";
+import { InputPathToUrlTransformPlugin } from "@11ty/eleventy";
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
 
 	eleventyConfig.addPlugin(pluginWebc, {
@@ -13,8 +12,7 @@ module.exports = function(eleventyConfig) {
 		]
 	});
 
-	// Use arbitrary JavaScript in front matter.
-	eleventyConfig.addPlugin(pluginJavaScriptFrontMatter);
+	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
 	eleventyConfig.setServerOptions({
 		domDiff: false

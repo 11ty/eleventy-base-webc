@@ -2,6 +2,7 @@
 	"name": "@11ty/eleventy-base-webc",
 	"version": "1.0.0",
 	"description": "A minimalist bare-bones starter project using Eleventy and WebC.",
+	"type": "module",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"start": "npx @11ty/eleventy --serve --quiet --incremental",
@@ -19,7 +20,7 @@
 	},
 	"license": "MIT",
 	"engines": {
-		"node": ">=14"
+		"node": ">=18"
 	},
 	"funding": {
 		"type": "opencollective",
@@ -30,9 +31,8 @@
 	},
 	"homepage": "https://github.com/11ty/eleventy-base-webc#readme",
 	"devDependencies": {
-		"@11ty/eleventy": "^2.0.1",
-		"@11ty/eleventy-plugin-webc": "^0.11.1",
-		"node-retrieve-globals": "^2.0.8"
+		"@11ty/eleventy": "3.0.0-alpha.5",
+		"@11ty/eleventy-plugin-webc": "^0.11.2"
 	},
 	"dependencies": {
 		"@11ty/is-land": "^4.0.0"
