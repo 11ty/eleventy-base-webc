@@ -23,12 +23,6 @@ A minimalist bare-bones Eleventy-official starter project useful for demos/exper
 
 ## Demo
 
+- [Cloudflare Pages](https://eleventy-base-webc.pages.dev/)
 - [Netlify](https://eleventy-base-webc.netlify.app/)
-
-## Deploy this to your own site
-
-Deploy this Eleventy site in just a few clicks on these services:
-
-- [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-webc)
-- If you run Eleventy locally you can drag your `_site` folder to [`drop.netlify.com`](https://drop.netlify.com/) to upload it without using `git`.
-- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
+- Learn more about [deploying an Eleventy project to the web](https://www.11ty.dev/docs/deployment/).
