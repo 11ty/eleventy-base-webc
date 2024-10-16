@@ -10,6 +10,10 @@
 		<!--- This is rolled into the bundle. --->
 		<link rel="stylesheet" href="css/base.css">
 
+		<!-- add parvus lib assets -->
+		<link rel="stylesheet" href="assets/parvus.min.css">
+		<script src="assets/parvus.min.js"></script>
+
 		<style webc:keep @raw="getBundle('css')"></style>
 	</head>
 	<body>
