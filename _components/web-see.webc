@@ -1,0 +1,11 @@
+<!--- web-see.webc --->
+<template shadowrootmode="open">
+  <style>
+    p { color: red; }
+    ::slotted(*) { color: blue; }
+  </style>
+  <p>Shadow!</p>
+	<!-- https://bennypowers.dev/posts/webc-dsd-slot-workaround/
+	     https://developer.mozilla.org/zh-CN/docs/Web/CSS/::slotted CSS NOT WORK, so color is not blue -->
+  <slot></slot>
+</template>

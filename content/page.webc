@@ -17,6 +17,10 @@ const json = {
 ---
 <h1>This is another page.</h1>
 
+<web-see>
+  <p>Light!</p>
+</web-see>
+
 <h2>This is a hello component</h2>
 <hello-component place="world"></hello-component>
 
