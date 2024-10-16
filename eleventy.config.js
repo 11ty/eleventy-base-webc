@@ -12,6 +12,9 @@ export default function(eleventyConfig) {
 		]
 	});
 
+	eleventyConfig.addPassthroughCopy("./assets/*.js");
+	eleventyConfig.addPassthroughCopy("./assets/*.css");
+
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
 	eleventyConfig.setServerOptions({

@@ -1,0 +1,18 @@
+<menu :@data="json"></menu>
+
+<template webc:is="menu">
+  <nav webc:root>
+    <ul>
+      <!-- 遍历主菜单 -->
+      <li webc:for="(menuTitle, subMenus) in data">
+        <button type="button" @text="menuTitle"></button>
+        <ul>
+          <!-- 遍历子菜单 -->
+          <li webc:for="subMenu of subMenus">
+            <a :href="subMenu.link" @text="subMenu.title"></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</template>

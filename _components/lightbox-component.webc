@@ -1,0 +1,68 @@
+<div class="gallery">
+
+	<div webc:for="image of images" >
+		<a :href="image.url" class="lightbox">
+			<img :src="image.thumb">
+		</a>
+	</div>
+
+</div>
+
+<style webc:scoped>
+.gallery {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: flex-start;
+	align-items: center;
+}
+.gallery a {
+	flex: 0 0 auto;
+	width: 300px; /* 固定宽度 */
+	height: 300px; /* 固定高度 */
+}
+.gallery img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* 保持图片比例并填满容器 */
+}
+</style>
+
+<script>
+  window.customElements.define("lightbox-component", class extends HTMLElement {
+    connectedCallback() {
+      this.loadAssets().then(() => {
+        this.initParvus();
+      });
+    }
+
+    loadAssets() {
+      return new Promise((resolve) => {
+        if (!document.querySelector('link[href="/assets/parvus.min.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = '/assets/parvus.min.css';
+          document.head.appendChild(link);
+        }
+
+        if (!document.querySelector('script[src="/assets/parvus.min.js"]')) {
+          const script = document.createElement('script');
+          script.src = '/assets/parvus.min.js';
+          script.onload = resolve;
+          document.body.appendChild(script);
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    initParvus() {
+      if (typeof Parvus !== 'undefined') {
+        new Parvus();
+      } else {
+        console.error('Parvus is not defined. Make sure the script is loaded correctly.');
+      }
+    }
+  });
+</script>

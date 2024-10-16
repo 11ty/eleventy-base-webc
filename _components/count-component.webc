@@ -1,0 +1,24 @@
+<button type="button">添加</button>
+<output @html="this.value"></output>
+
+<style webc:scoped>
+  :host(:not(:defined)) > button {
+    /* display: none; */
+		opacity: 0.5;
+		cursor: not-allowed;
+  }
+</style>
+
+<script>
+  window.customElements.define("count-component", class extends HTMLElement {
+    connectedCallback() {
+      const btn = this.querySelector("button");
+      const output = this.querySelector("output");
+      let value = parseInt(output.innerText);
+
+      btn.addEventListener("click", () => {
+        output.innerText = ++value;
+      });
+    }
+  });
+</script>
