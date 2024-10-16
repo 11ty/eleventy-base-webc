@@ -1,43 +1,18 @@
-<button type="button">展开菜单</button>
-<output></output>
+<menu :@data="json"></menu>
 
-<style webc:scoped>
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  ul ul {
-    margin-left: 20px;
-  }
-</style>
-
-<script>
-class MenuComponent extends HTMLElement {
-  connectedCallback() {
-    const button = this.querySelector('button');
-    const output = this.querySelector('output');
-    const data = JSON.parse(this.getAttribute('data'));
-
-    button.addEventListener('click', () => {
-      output.innerHTML = this.renderMenu(data);
-    });
-  }
-
-  renderMenu(data) {
-    return `
-      <ul>
-        ${Object.entries(data).map(([key, value]) => `
-          <li>
-            ${key}
-            <ul>
-              ${value.map(item => `<li>${item}</li>`).join('')}
-            </ul>
+<template webc:is="menu">
+  <nav webc:root>
+    <ul>
+      <!-- 遍历主菜单 -->
+      <li webc:for="(menuTitle, subMenus) in data">
+        <button type="button" @text="menuTitle"></button>
+        <ul>
+          <!-- 遍历子菜单 -->
+          <li webc:for="subMenu of subMenus">
+            <a :href="subMenu.link" @text="subMenu.title"></a>
           </li>
-        `).join('')}
-      </ul>
-    `;
-  }
-}
-
-customElements.define('menu-component', MenuComponent);
-</script>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</template>

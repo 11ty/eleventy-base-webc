@@ -4,13 +4,23 @@ function permalink(data) {
 }
 
 // 这里模拟从Java后端获取的数据
-const menuData = JSON.stringify({
-  "菜单1": ["子菜单1-1", "子菜单1-2"],
-  "菜单2": ["子菜单2-1", "子菜单2-2"]
-});
+const json = {
+  'menu 1': [
+    { title: 'sub_menu1-1', link: "/a.html" },
+    { title: 'sub_menu1-2', link: "/b.html" }
+  ],
+  'menu 2': [
+    { title: 'sub_menu2-1', link: "/c.html" },
+    { title: 'sub_menu2-2', link: "/d.html" }
+  ]
+};
 ---
 
-<menu-component :data="menuData"></menu-component>
+
+<menu-component :@data="json"></menu-component>
+
+{# <lightbox :@images="images" ></lightbox> #}
+
 <count-component :value="8"></count-component>
 
 <p>This is another page.</p>
