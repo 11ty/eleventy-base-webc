@@ -18,6 +18,12 @@
 </template>
 
 <style webc:scoped>
+  .main-menu {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
   .main-menu > ul {
     display: flex;
     list-style: none;
@@ -27,13 +33,21 @@
 
   .main-menu > ul > li {
     position: relative;
+		z-index: 1000;
   }
 
   .main-menu button {
-    padding: 10px 15px;
+    padding: 15px 20px;
     background: none;
     border: none;
     cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+
+  .main-menu button:hover {
+    color: #007bff;
   }
 
   .sub-menu {
@@ -42,10 +56,11 @@
     top: 100%;
     left: 0;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 10px 0;
     list-style: none;
-    min-width: 150px;
+    min-width: 200px;
   }
 
   .main-menu > ul > li:hover .sub-menu {
@@ -54,12 +69,15 @@
 
   .sub-menu a {
     display: block;
-    padding: 10px 15px;
+    padding: 12px 20px;
     text-decoration: none;
     color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
   }
 
   .sub-menu a:hover {
     background-color: #f0f0f0;
+    color: #007bff;
   }
 </style>
