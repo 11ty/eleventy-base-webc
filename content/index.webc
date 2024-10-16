@@ -1,4 +1,4 @@
----node
+---js
 // Initialize page data in JavaScript front matter
 let place = "earth";
 ---
