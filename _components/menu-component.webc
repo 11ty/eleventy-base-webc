@@ -3,6 +3,7 @@
 <template webc:is="menu">
   <nav class="main-menu">
     <ul>
+			<li><slot name="menu-start"></slot></li>
       <!-- 遍历主菜单 -->
       <li webc:for="(menuTitle, subMenus) in data">
         <button type="button" @text="menuTitle"></button>
@@ -13,6 +14,7 @@
           </li>
         </ul>
       </li>
+			<li><slot name="menu-end"></slot></li>
     </ul>
   </nav>
 </template>
