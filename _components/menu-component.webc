@@ -1,0 +1,43 @@
+<button type="button">展开菜单</button>
+<output></output>
+
+<style webc:scoped>
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  ul ul {
+    margin-left: 20px;
+  }
+</style>
+
+<script>
+class MenuComponent extends HTMLElement {
+  connectedCallback() {
+    const button = this.querySelector('button');
+    const output = this.querySelector('output');
+    const data = JSON.parse(this.getAttribute('data'));
+
+    button.addEventListener('click', () => {
+      output.innerHTML = this.renderMenu(data);
+    });
+  }
+
+  renderMenu(data) {
+    return `
+      <ul>
+        ${Object.entries(data).map(([key, value]) => `
+          <li>
+            ${key}
+            <ul>
+              ${value.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </li>
+        `).join('')}
+      </ul>
+    `;
+  }
+}
+
+customElements.define('menu-component', MenuComponent);
+</script>

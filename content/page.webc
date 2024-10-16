@@ -2,7 +2,16 @@
 function permalink(data) {
 	return "/remapped/";
 }
+
+// 这里模拟从Java后端获取的数据
+const menuData = JSON.stringify({
+  "菜单1": ["子菜单1-1", "子菜单1-2"],
+  "菜单2": ["子菜单2-1", "子菜单2-2"]
+});
 ---
+
+<menu-component :data="menuData"></menu-component>
+
 <p>This is another page.</p>
 
 <hello-component place="world"></hello-component>
