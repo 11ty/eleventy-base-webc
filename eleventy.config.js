@@ -17,12 +17,12 @@ export default function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
 		domDiff: false
 	});
+};
 
-	return {
-		dir: {
-			input: "content",          // default: "."
-			includes: "../_includes",  // default: "_includes"
-			data: "../_data",          // default: "_data"
-		},
+export const config = {
+	dir: {
+		input: "content",          // default: "."
+		includes: "../_includes",  // default: "_includes"
+		data: "../_data",          // default: "_data"
 	}
 };
