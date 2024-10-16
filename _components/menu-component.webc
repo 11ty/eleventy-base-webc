@@ -1,12 +1,12 @@
 <menu :@data="json"></menu>
 
 <template webc:is="menu">
-  <nav webc:root>
+  <nav class="main-menu">
     <ul>
       <!-- 遍历主菜单 -->
       <li webc:for="(menuTitle, subMenus) in data">
         <button type="button" @text="menuTitle"></button>
-        <ul>
+        <ul class="sub-menu">
           <!-- 遍历子菜单 -->
           <li webc:for="subMenu of subMenus">
             <a :href="subMenu.link" @text="subMenu.title"></a>
@@ -16,3 +16,50 @@
     </ul>
   </nav>
 </template>
+
+<style webc:scoped>
+  .main-menu > ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .main-menu > ul > li {
+    position: relative;
+  }
+
+  .main-menu button {
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0;
+    list-style: none;
+    min-width: 150px;
+  }
+
+  .main-menu > ul > li:hover .sub-menu {
+    display: block;
+  }
+
+  .sub-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .sub-menu a:hover {
+    background-color: #f0f0f0;
+  }
+</style>
