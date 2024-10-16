@@ -1,0 +1,62 @@
+<div>
+
+	<div webc:for="image of images" >
+		<a :href="image.url" class="lightbox">
+			<img :src="image.thumb">
+		</a>
+	</div>
+
+</div>
+
+<style webc:scoped>
+:host {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+:host img {
+	max-width:300px;
+	max-height:300px;
+	padding: 10px;
+}
+</style>
+
+<script>
+  window.customElements.define("lightbox-component", class extends HTMLElement {
+    connectedCallback() {
+      this.loadAssets().then(() => {
+        this.initParvus();
+      });
+    }
+
+    loadAssets() {
+      return new Promise((resolve) => {
+        if (!document.querySelector('link[href="/assets/parvus.min.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = '/assets/parvus.min.css';
+          document.head.appendChild(link);
+        }
+
+        if (!document.querySelector('script[src="/assets/parvus.min.js"]')) {
+          const script = document.createElement('script');
+          script.src = '/assets/parvus.min.js';
+          script.onload = resolve;
+          document.body.appendChild(script);
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    initParvus() {
+      if (typeof Parvus !== 'undefined') {
+        new Parvus();
+      } else {
+        console.error('Parvus is not defined. Make sure the script is loaded correctly.');
+      }
+    }
+  });
+</script>

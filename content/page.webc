@@ -29,7 +29,8 @@ const json = {
 <h2>This is a picture lightbox component from <a href="https://www.raymondcamden.com/2023/04/04/webc-updates-in-eleventy-looping">raymondcamden</a> (<a href="https://github.com/cfjedimaster/eleventy-demos/tree/master/webc_lightbox">github</a>)</h2>
 <!---
 Note, must use : or value is converted to string.
+It loads the _data/images.json why compile
 --->
-<lightbox :@images="images" ></lightbox>
+<lightbox-component :@images="images" ></lightbox-component>
 
 <p><a href="index.webc">Go back</a>.</p>
