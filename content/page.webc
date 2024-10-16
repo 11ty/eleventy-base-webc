@@ -11,6 +11,7 @@ const menuData = JSON.stringify({
 ---
 
 <menu-component :data="menuData"></menu-component>
+<count-component :value="8"></count-component>
 
 <p>This is another page.</p>
 
