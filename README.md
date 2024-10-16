@@ -7,7 +7,7 @@ A minimalist bare-bones Eleventy-official starter project useful for demos/exper
 * [Eleventy WebC plugin](https://www.11ty.dev/docs/languages/webc/) preconfigured:
 	* Includes the [`<is-land>` WebC component](https://www.11ty.dev/docs/plugins/partial-hydration/) ready for use.
 	* Add your own `*.webc` files to the `_components` folder.
-* Using the new `node` front matter type for arbitrary JavaScript front matter (via [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/))
+* Using the new [`js` front matter type for arbitrary JavaScript front matter](https://www.11ty.dev/docs/data-frontmatter/#javascript-front-matter)
 * Simple WebC Eleventy Layout file with streamlined critical CSS and JS bundles (see `_includes/layouts/base.webc`)
 
 ## Get Started
