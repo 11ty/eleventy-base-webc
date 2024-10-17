@@ -46,4 +46,9 @@ It loads the _data/images.json why compile
 <shadow-dom-slot-ng>
 	<p>Light!</p>
 </shadow-dom-slot-ng>
+
+<h2>This is a calendar component</h2>
+
+<calendar-component :@holidays="japanese_holidays.holidays"></calendar-component>
+
 <p><a href="index.webc">Go back</a>.</p>

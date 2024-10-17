@@ -35,6 +35,7 @@
 		"@11ty/eleventy-plugin-webc": "^0.11.2"
 	},
 	"dependencies": {
-		"@11ty/is-land": "^4.0.0"
+		"@11ty/is-land": "^4.0.0",
+		"csv-parse": "^5.5.6"
 	}
 }

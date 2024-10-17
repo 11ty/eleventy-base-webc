@@ -1,0 +1,8 @@
+<div class="calendar">
+  <div webc:for="holiday of holidays">
+    <div class="holiday">
+      <span class="date" @text="holiday.date"></span>
+      <span class="name" @text="holiday.name"></span>
+    </div>
+  </div>
+</div>
