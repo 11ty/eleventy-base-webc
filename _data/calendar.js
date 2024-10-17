@@ -36,8 +36,20 @@ const calendarGenerator = function(year) {
         days: []
       };
 
+      const firstDay = new Date(year, month, 1);
+      const startingDayOfWeek = firstDay.getDay();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+      // 添加上个月的剩余天数
+      for (let i = 0; i < startingDayOfWeek; i++) {
+        monthData.days.push({
+          date: "",
+          weekday: weekdays[i],
+          isCurrentMonth: false
+        });
+      }
+
+      // 添加当前月的天数
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(year, month, day);
         const dateString = date.toISOString().split('T')[0];
@@ -46,9 +58,21 @@ const calendarGenerator = function(year) {
           date: day,
           weekday: weekdays[date.getDay()],
           isWeekend: date.getDay() === 0 || date.getDay() === 6,
+          isCurrentMonth: true,
           lunar: getLunarDate(date),
           holiday: holidays[dateString] || "",
           sixWeekday: getSixWeekday(date)
+        });
+      }
+
+      // 如果需要,添加下个月的开始几天,以填满6行
+      const totalDays = monthData.days.length;
+      const remainingDays = 42 - totalDays; // 6行7列 = 42
+      for (let i = 1; i <= remainingDays; i++) {
+        monthData.days.push({
+          date: i,
+          weekday: weekdays[(startingDayOfWeek + daysInMonth + i - 1) % 7],
+          isCurrentMonth: false
         });
       }
 
