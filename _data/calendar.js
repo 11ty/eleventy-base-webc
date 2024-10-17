@@ -1,4 +1,5 @@
 import japaneseHolidays from './japanese_holidays.js';
+import { Lunar, Solar } from 'lunar-javascript';
 
 console.log("calendar.js 中导入的祝日数据:", japaneseHolidays);
 
@@ -23,13 +24,13 @@ const calendarGenerator = function(year) {
   console.log("处理后的节假日数据:", holidays);
 
   function getLunarDate(date) {
-    // 这里需要实现农历转换逻辑
-    return "初一"; // 示例返回值
+    const lunar = Lunar.fromDate(date);
+    return `${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}（${lunar.getJieQi()}）`;
   }
 
   function getSixWeekday(date) {
-    // 这里需要实现六曜计算逻辑
-    return "大安"; // 示例返回值
+    const lunar = Lunar.fromDate(date);
+    return lunar.getJieQi(); // 这里返回的是节气,我们可以根据需要修改为六曜
   }
 
   function generateCalendarData() {
