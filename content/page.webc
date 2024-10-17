@@ -49,6 +49,6 @@ It loads the _data/images.json why compile
 
 <h2>This is a calendar component</h2>
 
-<calendar-component :@holidays="japanese_holidays.holidays"></calendar-component>
+<calendar-component :@holidays="japanese_holidays.holidays" :@calendar="calendar.calendarCurrentYear"></calendar-component>
 
 <p><a href="index.webc">Go back</a>.</p>

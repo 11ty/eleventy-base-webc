@@ -1,8 +1,17 @@
 <div class="calendar">
-  <div webc:for="holiday of holidays">
-    <div class="holiday">
-      <span class="date" @text="holiday.date"></span>
-      <span class="name" @text="holiday.name"></span>
+  <h2 @text="'年历 ' + calendar.year"></h2>
+  <div class="month" webc:for="month of calendar.months">
+    <h3 @text="month.name"></h3>
+    <div class="weekdays">
+      <span webc:for="day of calendar.weekdays" @text="day"></span>
+    </div>
+    <div class="days">
+      <div class="day" webc:for="day of month.days" >
+        <span class="date" @text="day.date"></span>
+        <span class="lunar" @text="day.lunar"></span>
+        <span class="holiday" @text="day.holiday"></span>
+        <span class="sixWeekday" @text="day.sixWeekday"></span>
+      </div>
     </div>
   </div>
 </div>
