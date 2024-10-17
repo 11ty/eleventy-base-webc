@@ -41,4 +41,7 @@ It loads the _data/images.json why compile
 --->
 <lightbox-component :@images="images" ></lightbox-component>
 
+<shadow-dom-slot-ng>
+	<p>Light!</p>
+</shadow-dom-slot-ng>
 <p><a href="index.webc">Go back</a>.</p>

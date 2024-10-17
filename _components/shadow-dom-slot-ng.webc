@@ -1,4 +1,4 @@
-<!--- web-see.webc --->
+<!--- web-see.webc https://webkit.org/blog/13851/declarative-shadow-dom/ --->
 <template shadowrootmode="open">
   <style>
     p { color: red; }
