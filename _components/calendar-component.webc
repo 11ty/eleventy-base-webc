@@ -6,9 +6,7 @@
       <span webc:for="day of calendar.weekdays" @text="day"></span>
     </div>
     <div class="days">
-      <div class="day"
-           webc:for="day of month.days"
-           webc:class="{ 'holiday': day.holiday, 'weekend': day.isWeekend, 'not-current-month': !day.isCurrentMonth }">
+      <div webc:for="day of month.days" @attributes="({ class: day.classes})">
         <span class="date" @text="day.date"></span>
         <span class="lunar" @text="day.lunar"></span>
         <span class="holiday" @text="day.holiday"></span>
@@ -40,27 +38,34 @@
     border: 1px solid #ddd;
     padding: 5px;
     text-align: center;
-    min-height: 80px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .holiday {
-    background-color: #ffebee;
-    color: red;
+  .holiday, .sunday {
+    background-color: #ffebee; /* 浅红色背景 */
   }
-  .weekend {
-    background-color: #f5f5f5;
+  .saturday {
+    background-color: #e3f2fd; /* 浅蓝色背景 */
   }
   .not-current-month {
     color: #ccc;
   }
   .date {
     font-weight: bold;
-    display: block;
+    font-size: 1.2em;
   }
   .lunar, .holiday, .sixWeekday {
     font-size: 0.8em;
-    display: block;
   }
   .holiday {
     color: red;
+  }
+  .lunar {
+    color: #666;
+  }
+  .sixWeekday {
+    color: #0066cc;
   }
 </style>

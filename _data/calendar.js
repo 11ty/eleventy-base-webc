@@ -36,6 +36,15 @@ const calendarGenerator = function(year) {
     return sixWeekdays[diffDays % 6];
   }
 
+  function getDayClasses(day) {
+    const classes = ['day']; // 添加基础类 'day'
+    if (day.holiday) classes.push('holiday');
+    if (day.weekday === '土') classes.push('saturday');
+    if (day.weekday === '日') classes.push('sunday');
+    if (!day.isCurrentMonth) classes.push('not-current-month');
+    return classes.join(' ');
+  }
+
   function generateCalendarData() {
     const calendarData = {
       year: year,
@@ -72,9 +81,14 @@ const calendarGenerator = function(year) {
           weekday: weekdays[date.getDay()],
           isWeekend: date.getDay() === 0 || date.getDay() === 6,
           isCurrentMonth: true,
-          lunar: '', // disable temp: getLunarDate(date),
+          lunar: getLunarDate(date),
           holiday: holidays[dateString] || "",
-          sixWeekday: getSixWeekday(date)
+          sixWeekday: getSixWeekday(date),
+          classes: getDayClasses({
+            weekday: weekdays[date.getDay()],
+            holiday: holidays[dateString] || "",
+            isCurrentMonth: true
+          })
         });
       }
 
