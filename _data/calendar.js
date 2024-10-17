@@ -1,5 +1,5 @@
 import japaneseHolidays from './japanese_holidays.js';
-import { Lunar, Solar } from 'lunar-javascript';
+import { Solar } from 'lunar-javascript';
 
 console.log("calendar.js 中导入的祝日数据:", japaneseHolidays);
 
@@ -24,13 +24,16 @@ const calendarGenerator = function(year) {
   console.log("处理后的节假日数据:", holidays);
 
   function getLunarDate(date) {
-    const lunar = Lunar.fromDate(date);
-    return `${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}（${lunar.getJieQi()}）`;
+    const solar = Solar.fromDate(date);
+    const lunar = solar.getLunar();
+    return `${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`;
   }
 
   function getSixWeekday(date) {
-    const lunar = Lunar.fromDate(date);
-    return lunar.getJieQi(); // 这里返回的是节气,我们可以根据需要修改为六曜
+    const sixWeekdays = ["先勝", "友引", "先負", "仏滅", "大安", "赤口"];
+    const baseDate = new Date(1873, 0, 1); // 明治6年1月1日,六曜计算的基准日期
+    const diffDays = Math.floor((date - baseDate) / (24 * 60 * 60 * 1000));
+    return sixWeekdays[diffDays % 6];
   }
 
   function generateCalendarData() {
@@ -69,7 +72,7 @@ const calendarGenerator = function(year) {
           weekday: weekdays[date.getDay()],
           isWeekend: date.getDay() === 0 || date.getDay() === 6,
           isCurrentMonth: true,
-          lunar: getLunarDate(date),
+          lunar: '', // disable temp: getLunarDate(date),
           holiday: holidays[dateString] || "",
           sixWeekday: getSixWeekday(date)
         });
