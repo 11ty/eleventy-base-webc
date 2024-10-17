@@ -28,7 +28,9 @@ const json = {
 <count-component :value="8"></count-component>
 
 <h2>This is a menu component</h2>
-<menu-component :@data="json"></menu-component>
+<div style="margin-bottom: 6rem;">
+  <menu-component :@data="json"></menu-component>
+</div>
 <menu-component :@data="json">
 	<p slot="menu-start">Hello〜</p>
 	<p slot="menu-end">〜World</p>
