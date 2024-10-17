@@ -1,5 +1,7 @@
 import japaneseHolidays from './japanese_holidays.js';
 
+console.log("calendar.js 中导入的祝日数据:", japaneseHolidays);
+
 const calendarGenerator = function(year) {
   const months = [
     "一月", "二月", "三月", "四月", "五月", "六月",
@@ -11,11 +13,14 @@ const calendarGenerator = function(year) {
   // 将节假日数据转换为更易于查找的格式
   const holidays = {};
   japaneseHolidays.holidays.forEach(holiday => {
-    const [y, m, d] = holiday.date.split('-');
+    const [y, m, d] = holiday.date.split('/');
     if (y === year.toString()) {
-      holidays[holiday.date] = holiday.name;
+      const formattedDate = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+      holidays[formattedDate] = holiday.name;
     }
   });
+
+  console.log("处理后的节假日数据:", holidays);
 
   function getLunarDate(date) {
     // 这里需要实现农历转换逻辑
@@ -28,7 +33,11 @@ const calendarGenerator = function(year) {
   }
 
   function generateCalendarData() {
-    const calendarData = [];
+    const calendarData = {
+      year: year,
+      months: [],
+      weekdays: weekdays
+    };
 
     for (let month = 0; month < 12; month++) {
       const monthData = {
@@ -52,7 +61,7 @@ const calendarGenerator = function(year) {
       // 添加当前月的天数
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(year, month, day);
-        const dateString = date.toISOString().split('T')[0];
+        const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
         monthData.days.push({
           date: day,
@@ -65,31 +74,20 @@ const calendarGenerator = function(year) {
         });
       }
 
-      // 如果需要,添加下个月的开始几天,以填满6行
-      const totalDays = monthData.days.length;
-      const remainingDays = 42 - totalDays; // 6行7列 = 42
-      for (let i = 1; i <= remainingDays; i++) {
-        monthData.days.push({
-          date: i,
-          weekday: weekdays[(startingDayOfWeek + daysInMonth + i - 1) % 7],
-          isCurrentMonth: false
-        });
-      }
-
-      calendarData.push(monthData);
+      calendarData.months.push(monthData);
     }
 
-    return {
-      year: year,
-      months: calendarData,
-      weekdays: weekdays
-    };
+    return calendarData;
   }
 
   return generateCalendarData();
 }
 
-const calendarCurrentYear = calendarGenerator(new Date().getFullYear());
+const currentYear = new Date().getFullYear();
+const calendarData = calendarGenerator(currentYear);
+
+console.log("生成的日历数据:", calendarData);
+
 export default {
-	calendarCurrentYear: calendarCurrentYear
+  calendarCurrentYear: calendarData
 };
