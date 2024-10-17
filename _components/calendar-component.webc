@@ -49,6 +49,11 @@
   .saturday {
     background-color: #e3f2fd; /* 浅蓝色背景 */
   }
+  .today {
+    background-color: #fffde7; /* 淡黄色背景 */
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 添加一些阴影以突出显示 */
+  }
   .not-current-month {
     color: #ccc;
   }

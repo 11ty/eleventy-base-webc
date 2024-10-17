@@ -37,11 +37,12 @@ const calendarGenerator = function(year) {
   }
 
   function getDayClasses(day) {
-    const classes = ['day']; // 添加基础类 'day'
+    const classes = ['day'];
     if (day.holiday) classes.push('holiday');
     if (day.weekday === '土') classes.push('saturday');
     if (day.weekday === '日') classes.push('sunday');
     if (!day.isCurrentMonth) classes.push('not-current-month');
+    if (day.isToday) classes.push('today');
     return classes.join(' ');
   }
 
@@ -72,6 +73,12 @@ const calendarGenerator = function(year) {
       }
 
       // 添加当前月的天数
+      const today = new Date();
+      const isToday = (date) =>
+        date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear();
+
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(year, month, day);
         const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
@@ -81,13 +88,15 @@ const calendarGenerator = function(year) {
           weekday: weekdays[date.getDay()],
           isWeekend: date.getDay() === 0 || date.getDay() === 6,
           isCurrentMonth: true,
+          isToday: isToday(date),
           lunar: getLunarDate(date),
           holiday: holidays[dateString] || "",
           sixWeekday: getSixWeekday(date),
           classes: getDayClasses({
             weekday: weekdays[date.getDay()],
             holiday: holidays[dateString] || "",
-            isCurrentMonth: true
+            isCurrentMonth: true,
+            isToday: isToday(date)
           })
         });
       }
