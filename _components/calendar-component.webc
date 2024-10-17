@@ -54,9 +54,10 @@
     font-weight: bold;
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 添加一些阴影以突出显示 */
   }
-  .not-current-month {
-    color: #ccc;
-  }
+	.not-current-month {
+		color: #ccc;
+		background-color: #f0f0f0;
+	}
   .date {
     font-weight: bold;
     font-size: 1.2em;

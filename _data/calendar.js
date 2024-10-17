@@ -30,7 +30,7 @@ const calendarGenerator = function(year) {
   }
 
   function getSixWeekday(date) {
-    const sixWeekdays = ["先勝", "友引", "先負", "仏滅", "大安", "赤口"];
+    const sixWeekdays = ["先", "友引", "先負", "仏滅", "大安", "赤口"];
     const baseDate = new Date(1873, 0, 1); // 明治6年1月1日,六曜计算的基准日期
     const diffDays = Math.floor((date - baseDate) / (24 * 60 * 60 * 1000));
     return sixWeekdays[diffDays % 6];
@@ -64,11 +64,18 @@ const calendarGenerator = function(year) {
       const daysInMonth = new Date(year, month + 1, 0).getDate();
 
       // 添加上个月的剩余天数
+      const prevMonth = new Date(year, month - 1, 0);
+      const daysInPrevMonth = prevMonth.getDate();
       for (let i = 0; i < startingDayOfWeek; i++) {
+        const prevMonthDay = daysInPrevMonth - startingDayOfWeek + i + 1;
         monthData.days.push({
-          date: "",
+          date: prevMonthDay,
           weekday: weekdays[i],
-          isCurrentMonth: false
+          isCurrentMonth: false,
+          classes: getDayClasses({
+            weekday: weekdays[i],
+            isCurrentMonth: false,
+          })
         });
       }
 
@@ -99,6 +106,23 @@ const calendarGenerator = function(year) {
             isToday: isToday(date)
           })
         });
+      }
+
+      // 添加下个月的开始几天
+      const remainingDays = 7 - (monthData.days.length % 7);
+      if (remainingDays < 7) {
+        for (let i = 1; i <= remainingDays; i++) {
+          const nextMonthDate = new Date(year, month + 1, i);
+          monthData.days.push({
+            date: i,
+            weekday: weekdays[nextMonthDate.getDay()],
+            isCurrentMonth: false,
+            classes: getDayClasses({
+              weekday: weekdays[nextMonthDate.getDay()],
+              isCurrentMonth: false,
+            })
+          });
+        }
       }
 
       calendarData.months.push(monthData);
