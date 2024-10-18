@@ -1,7 +1,7 @@
 import japaneseHolidays from './japanese_holidays.js';
 import { Solar } from 'lunar-javascript';
 
-console.log("calendar.js 中导入的祝日数据:", japaneseHolidays);
+// console.log("calendar.js 中导入的祝日数据:", japaneseHolidays);
 
 const calendarGenerator = function(year) {
   const months = [
@@ -24,7 +24,7 @@ const calendarGenerator = function(year) {
     }
   });
 
-  console.log("处理后的节假日数据:", holidays);
+  // console.log("处理后的节假日数据:", holidays);
 
   function getLunarDate(date) {
     const solar = Solar.fromDate(date);
@@ -140,7 +140,7 @@ const calendarGenerator = function(year) {
 const currentYear = new Date().getFullYear();
 const calendarData = calendarGenerator(currentYear);
 
-console.log("生成的日历数据:", calendarData);
+// console.log("生成的日历数据:", calendarData);
 
 export default {
   calendarCurrentYear: calendarData

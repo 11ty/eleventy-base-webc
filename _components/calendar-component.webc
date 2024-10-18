@@ -1,3 +1,8 @@
+---js
+console.log("Data available in page.webc:", this);
+console.log("Japanese holidays:", this.japanese_holidays);
+---
+
 <div class="calendar">
   <h2 @text="'年历 ' + calendar.year"></h2>
   <div class="month" webc:for="month of calendar.months">
