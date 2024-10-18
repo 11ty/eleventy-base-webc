@@ -83,41 +83,95 @@
   }
   .japanese_holiday {
     position: relative;
-    cursor: pointer;
-    display: inline-block;
   }
-  .japanese_holiday::after {
-    content: attr(data-description);
+  .tooltip {
     position: absolute;
-    bottom: 120%; /* 调整位置，使其在日期上方 */
-    left: 50%;
-    transform: translateX(-50%);
     background-color: #333;
     color: #fff;
-    padding: 5px;
+    padding: 5px 8px;
     border-radius: 3px;
+    font-size: 0.8em;
+    z-index: 10;
+    max-width: 200px;
+    width: max-content;
+    white-space: normal;
+    text-align: center;
+    word-wrap: break-word;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
-    font-size: 0.8em; /* 保持与其他小字体一致 */
-    z-index: 10; /* 确保显示在其他元素之上 */
-    pointer-events: none; /* 防止干扰鼠标事件 */
-
-    /* 新增的样式 */
-    max-width: 200px; /* 设置最大宽度 */
-    width: max-content; /* 内容不足最大宽度时自适应 */
-    white-space: normal; /* 允许文字换行 */
-    text-align: center; /* 文字居中 */
-    word-wrap: break-word; /* 长单词换行 */
+    pointer-events: none;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
   }
-  .japanese_holiday:hover::after {
+  .japanese_holiday:hover .tooltip {
     opacity: 1;
     visibility: visible;
   }
-  /* 触屏设备上面，点击等于hover，去掉下面以保留hover效果。触屏设备上一般js都是有效的，所以如果想为有js的设备另外设置效果时，可以在js里实现。
-	@media (hover: none) {
-    .japanese_holiday::after {
-      display: none;
-    }
-  } */
 </style>
+
+<div @html="this.content"></div>
+
+<script webc:keep>
+  class CalendarComponent extends HTMLElement {
+    connectedCallback() {
+      this.setupTooltips();
+    }
+
+    setupTooltips() {
+      this.addEventListener('mouseover', this.handleMouseOver);
+      this.addEventListener('mouseout', this.handleMouseOut);
+    }
+
+    handleMouseOver(event) {
+      const holiday = event.target.closest('.japanese_holiday');
+      if (holiday) {
+        let tooltip = holiday.querySelector('.tooltip');
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.className = 'tooltip';
+          tooltip.textContent = holiday.getAttribute('data-description');
+          holiday.appendChild(tooltip);
+        }
+        this.positionTooltip(holiday, tooltip);
+      }
+    }
+
+    handleMouseOut(event) {
+      const holiday = event.target.closest('.japanese_holiday');
+      if (holiday) {
+        const tooltip = holiday.querySelector('.tooltip');
+        if (tooltip) {
+          tooltip.style.opacity = '0';
+          tooltip.style.visibility = 'hidden';
+        }
+      }
+    }
+
+    positionTooltip(holiday, tooltip) {
+      const holidayRect = holiday.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+
+      if (holidayRect.left + tooltipRect.width > window.innerWidth) {
+        tooltip.style.left = 'auto';
+        tooltip.style.right = '0';
+        tooltip.style.transform = 'none';
+      } else if (holidayRect.left < tooltipRect.width / 2) {
+        tooltip.style.left = '0';
+        tooltip.style.transform = 'none';
+      } else {
+        tooltip.style.left = '50%';
+        tooltip.style.transform = 'translateX(-50%)';
+      }
+
+      tooltip.style.opacity = '1';
+      tooltip.style.visibility = 'visible';
+    }
+  }
+
+  customElements.define('calendar-component', CalendarComponent);
+</script>
+
+<slot></slot>
