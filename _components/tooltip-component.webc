@@ -1,0 +1,139 @@
+<style webc:scoped>
+  :host {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    z-index: 10;
+    max-width: 200px;
+    width: max-content;
+    white-space: normal;
+    text-align: center;
+    word-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  :host(:hover) .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  @media (hover: none) {
+    .tooltip {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<span class="tooltip-trigger">
+<slot></slot>
+</span>
+<span class="tooltip" @text="this.text"></span>
+
+<script>
+class TooltipComponent extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.render();
+		this.setupEventListeners();
+    // if (window.matchMedia('(hover: hover)').matches) {
+    //   this.setupEventListeners();
+    // }
+  }
+
+  render() {
+    const slot = this.querySelector('.tooltip-trigger');
+    const slotContent = this.querySelector('.tooltip');
+		this.shadowRoot.innerHTML = `
+			<style>
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    z-index: 10;
+    max-width: 200px;
+    width: max-content;
+    white-space: normal;
+    text-align: center;
+    word-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+			</style>
+		`;
+    this.shadowRoot.appendChild(slot);
+    this.shadowRoot.appendChild(slotContent);
+    this.tooltip = this.shadowRoot.querySelector('.tooltip');
+  }
+
+  setupEventListeners() {
+    this.addEventListener('mouseenter', this.showTooltip);
+    this.addEventListener('mouseleave', this.hideTooltip);
+  }
+
+  showTooltip = () => {
+    this.positionTooltip();
+    this.tooltip.style.opacity = '1';
+    this.tooltip.style.visibility = 'visible';
+  }
+
+  hideTooltip = () => {
+    this.tooltip.style.opacity = '0';
+    this.tooltip.style.visibility = 'hidden';
+  }
+
+  positionTooltip() {
+    const hostRect = this.getBoundingClientRect();
+    const tooltipRect = this.tooltip.getBoundingClientRect();
+
+    // 处理左右位置
+    if (hostRect.left + tooltipRect.width > window.innerWidth) {
+      this.tooltip.style.left = 'auto';
+      this.tooltip.style.right = '0';
+      this.tooltip.style.transform = 'none';
+    } else if (hostRect.left < tooltipRect.width / 2) {
+      this.tooltip.style.left = '0';
+      this.tooltip.style.transform = 'none';
+    } else {
+      this.tooltip.style.left = '50%';
+      this.tooltip.style.transform = 'translateX(-50%)';
+    }
+
+    // 处理顶部位置
+    if (hostRect.top - tooltipRect.height < 0) {
+      this.tooltip.style.top = '100%';
+      this.tooltip.style.bottom = 'auto';
+    } else {
+      this.tooltip.style.bottom = '100%';
+      this.tooltip.style.top = 'auto';
+    }
+  }
+}
+
+if ('customElements' in window) {
+  customElements.define('tooltip-component', TooltipComponent);
+}
+</script>

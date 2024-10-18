@@ -47,8 +47,12 @@ It loads the _data/images.json why compile
 	<p>Light!</p>
 </shadow-dom-slot-ng>
 
-<h2>This is a calendar component</h2>
+<h2>This is a tooltip component</h2>
+<tooltip-component text="This is a tooltip description, with disabled js support. But with js, it will be better.">
+	<p>This is a tooltip</p>
+</tooltip-component>
 
+<h2>This is a calendar component</h2>
 <calendar-component :@holidays="japanese_holidays.holidays" :@calendar="calendar.calendarCurrentYear"></calendar-component>
 
 <p><a href="index.webc">Go back</a>.</p>
