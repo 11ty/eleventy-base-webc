@@ -9,7 +9,9 @@
       <div webc:for="day of month.days" @attributes="({ class: day.classes})">
         <span class="date" @text="day.date"></span>
         <span class="lunar" @text="day.lunar"></span>
-        <span class="holiday" @text="day.holiday"></span>
+        <span webc:if="day.holiday" class="holiday" @attributes="({ 'data-description': day.holiday.description })">
+          <span @text="day.holiday.name"></span>
+        </span>
         <span class="sixWeekday" @text="day.sixWeekday"></span>
       </div>
     </div>
@@ -73,5 +75,33 @@
   }
   .sixWeekday {
     color: #0066cc;
+  }
+  .holiday {
+    position: relative;
+    cursor: pointer;
+  }
+  .holiday::after {
+    content: attr(data-description);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .holiday:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  @media (hover: none) {
+    .holiday::after {
+      display: none;
+    }
   }
 </style>

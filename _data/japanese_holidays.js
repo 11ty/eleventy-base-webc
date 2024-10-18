@@ -24,9 +24,16 @@ const getJapaneseHolidays = function() {
     delimiter: ','
   });
 
+	const holidayDescriptions = {
+		'元日': '元日とは・・・',
+		'成人の日': '成人の日とは・・・',
+		'建国記念の日': '建国記念の日とは・・・'
+	};
+
   const holidays = records.map(record => ({
     date: record['国民の祝日・休日月日'],
-    name: record['国民の祝日・休日名称']
+    name: record['国民の祝日・休日名称'],
+    description: holidayDescriptions[record['国民の祝日・休日名称']] || ''
   }));
 
   return holidays;

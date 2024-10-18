@@ -17,7 +17,10 @@ const calendarGenerator = function(year) {
     const [y, m, d] = holiday.date.split('/');
     if (y === year.toString()) {
       const formattedDate = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
-      holidays[formattedDate] = holiday.name;
+      holidays[formattedDate] = {
+        name: holiday.name,
+        description: holiday.description
+      };
     }
   });
 
@@ -97,11 +100,11 @@ const calendarGenerator = function(year) {
           isCurrentMonth: true,
           isToday: isToday(date),
           lunar: getLunarDate(date),
-          holiday: holidays[dateString] || "",
+          holiday: holidays[dateString] || null,
           sixWeekday: getSixWeekday(date),
           classes: getDayClasses({
             weekday: weekdays[date.getDay()],
-            holiday: holidays[dateString] || "",
+            holiday: holidays[dateString],
             isCurrentMonth: true,
             isToday: isToday(date)
           })
