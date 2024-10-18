@@ -14,9 +14,9 @@
       <div webc:for="day of month.days" @attributes="({ class: day.classes})">
         <span class="date" @text="day.date"></span>
         <span class="lunar" @text="day.lunar"></span>
-        <span webc:if="day.holiday" class="japanese_holiday" @attributes="({ 'data-description': day.holiday.description })">
+        <tooltip-component webc:if="day.holiday" :text="day.holiday.description">
           <span @text="day.holiday.name"></span>
-        </span>
+        </tooltip-component>
         <span class="sixWeekday" @text="day.sixWeekday"></span>
       </div>
     </div>
@@ -81,105 +81,9 @@
   .sixWeekday {
     color: #0066cc;
   }
-  .japanese_holiday {
-    position: relative;
-  }
-  .tooltip {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    z-index: 10;
-    max-width: 200px;
-    width: max-content;
-    white-space: normal;
-    text-align: center;
-    word-wrap: break-word;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    pointer-events: none;
-  }
-  .japanese_holiday:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-  }
 </style>
 
 <div @html="this.content"></div>
 
-<script webc:keep>
-  class CalendarComponent extends HTMLElement {
-    connectedCallback() {
-      this.setupTooltips();
-    }
-
-    setupTooltips() {
-      this.addEventListener('mouseover', this.handleMouseOver);
-      this.addEventListener('mouseout', this.handleMouseOut);
-    }
-
-    handleMouseOver(event) {
-      const holiday = event.target.closest('.japanese_holiday');
-      if (holiday) {
-        let tooltip = holiday.querySelector('.tooltip');
-        if (!tooltip) {
-          tooltip = document.createElement('div');
-          tooltip.className = 'tooltip';
-          tooltip.textContent = holiday.getAttribute('data-description');
-          holiday.appendChild(tooltip);
-        }
-        this.positionTooltip(holiday, tooltip);
-      }
-    }
-
-    handleMouseOut(event) {
-      const holiday = event.target.closest('.japanese_holiday');
-      if (holiday) {
-        const tooltip = holiday.querySelector('.tooltip');
-        if (tooltip) {
-          tooltip.style.opacity = '0';
-          tooltip.style.visibility = 'hidden';
-        }
-      }
-    }
-
-    positionTooltip(holiday, tooltip) {
-      const holidayRect = holiday.getBoundingClientRect();
-      const tooltipRect = tooltip.getBoundingClientRect();
-
-      // 处理左右位置
-      if (holidayRect.left + tooltipRect.width > window.innerWidth) {
-        tooltip.style.left = 'auto';
-        tooltip.style.right = '0';
-        tooltip.style.transform = 'none';
-      } else if (holidayRect.left < tooltipRect.width / 2) {
-        tooltip.style.left = '0';
-        tooltip.style.transform = 'none';
-      } else {
-        tooltip.style.left = '50%';
-        tooltip.style.transform = 'translateX(-50%)';
-      }
-
-      // 处理顶部位置
-      if (holidayRect.top - tooltipRect.height < 0) {
-        // 如果顶部空间不足，将工具提示显示在元素下方
-        tooltip.style.top = '100%';
-        tooltip.style.bottom = 'auto';
-      } else {
-        // 否则，显示在元素上方
-        tooltip.style.bottom = '100%';
-        tooltip.style.top = 'auto';
-      }
-
-      tooltip.style.opacity = '1';
-      tooltip.style.visibility = 'visible';
-    }
-  }
-
-  customElements.define('calendar-component', CalendarComponent);
-</script>
 
 <slot></slot>
