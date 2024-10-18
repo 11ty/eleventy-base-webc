@@ -1,7 +1,7 @@
----js
-console.log("Data available in page.webc:", this);
-console.log("Japanese holidays:", this.japanese_holidays);
----
+<script webc:setup>
+	// console.log("Data available in calendar component:", this);
+	// console.log("Japanese holidays loaded:", this.japanese_holidays.holidays.filter(h => h.date.startsWith('2024')).slice(0, 1));
+</script>
 
 <div class="calendar">
   <h2 @text="'年历 ' + calendar.year"></h2>

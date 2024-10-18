@@ -63,7 +63,7 @@ const getJapaneseHolidays = function() {
 }
 
 const japanese_holidays = getJapaneseHolidays();
-console.log("Holidays loaded:", japanese_holidays.filter(h => h.date.startsWith('2024')).slice(0, 2));
+// console.log("Holidays loaded:", japanese_holidays.filter(h => h.date.startsWith('2024')).slice(0, 2));
 
 export default {
 	holidays: japanese_holidays
