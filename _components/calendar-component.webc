@@ -9,7 +9,7 @@
       <div webc:for="day of month.days" @attributes="({ class: day.classes})">
         <span class="date" @text="day.date"></span>
         <span class="lunar" @text="day.lunar"></span>
-        <span webc:if="day.holiday" class="holiday" @attributes="({ 'data-description': day.holiday.description })">
+        <span webc:if="day.holiday" class="japanese_holiday" @attributes="({ 'data-description': day.holiday.description })">
           <span @text="day.holiday.name"></span>
         </span>
         <span class="sixWeekday" @text="day.sixWeekday"></span>
@@ -76,14 +76,15 @@
   .sixWeekday {
     color: #0066cc;
   }
-  .holiday {
+  .japanese_holiday {
     position: relative;
     cursor: pointer;
+    display: inline-block;
   }
-  .holiday::after {
+  .japanese_holiday::after {
     content: attr(data-description);
     position: absolute;
-    bottom: 100%;
+    bottom: 120%; /* 调整位置，使其在日期上方 */
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -94,14 +95,18 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
+    font-size: 0.8em; /* 保持与其他小字体一致 */
+    z-index: 10; /* 确保显示在其他元素之上 */
+    pointer-events: none; /* 防止干扰鼠标事件 */
   }
-  .holiday:hover::after {
+  .japanese_holiday:hover::after {
     opacity: 1;
     visibility: visible;
   }
-  @media (hover: none) {
-    .holiday::after {
+  /* 触屏设备上面，点击等于hover，去掉下面以保留hover效果。触屏设备上一般js都是有效的，所以如果想为有js的设备另外设置效果时，可以在js里实现。
+	@media (hover: none) {
+    .japanese_holiday::after {
       display: none;
     }
-  }
+  } */
 </style>
