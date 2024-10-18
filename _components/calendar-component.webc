@@ -101,10 +101,6 @@
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
     pointer-events: none;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 5px;
   }
   .japanese_holiday:hover .tooltip {
     opacity: 1;
@@ -154,6 +150,7 @@
       const holidayRect = holiday.getBoundingClientRect();
       const tooltipRect = tooltip.getBoundingClientRect();
 
+      // 处理左右位置
       if (holidayRect.left + tooltipRect.width > window.innerWidth) {
         tooltip.style.left = 'auto';
         tooltip.style.right = '0';
@@ -164,6 +161,17 @@
       } else {
         tooltip.style.left = '50%';
         tooltip.style.transform = 'translateX(-50%)';
+      }
+
+      // 处理顶部位置
+      if (holidayRect.top - tooltipRect.height < 0) {
+        // 如果顶部空间不足，将工具提示显示在元素下方
+        tooltip.style.top = '100%';
+        tooltip.style.bottom = 'auto';
+      } else {
+        // 否则，显示在元素上方
+        tooltip.style.bottom = '100%';
+        tooltip.style.top = 'auto';
       }
 
       tooltip.style.opacity = '1';
