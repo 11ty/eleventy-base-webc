@@ -96,13 +96,19 @@
     color: #fff;
     padding: 5px;
     border-radius: 3px;
-    white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
     font-size: 0.8em; /* 保持与其他小字体一致 */
     z-index: 10; /* 确保显示在其他元素之上 */
     pointer-events: none; /* 防止干扰鼠标事件 */
+
+    /* 新增的样式 */
+    max-width: 200px; /* 设置最大宽度 */
+    width: max-content; /* 内容不足最大宽度时自适应 */
+    white-space: normal; /* 允许文字换行 */
+    text-align: center; /* 文字居中 */
+    word-wrap: break-word; /* 长单词换行 */
   }
   .japanese_holiday:hover::after {
     opacity: 1;
